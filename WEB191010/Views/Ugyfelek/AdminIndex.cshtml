@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WEB191010.Models.Ugyfel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Ügyfelek</h2>
+<br />
+
+@if (!Model.Any())
+{
+    <p>Még nincsenek ügyfelek :'((((</p>
+}
+else
+{
+    <table id="tablazat" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ügyfél neve</th>
+                <th>előfizetés típusa</th>
+                <th>törlés</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(u.Nev, "Szerkesztes", "Ugyfelek", new { id = u.Id }, null)
+                    </td>
+                    <td>
+                        @u.ElofizetesTipus.Nev
+                    </td>
+                    <td>
+                        <button class="btn-link js-torles">Törlés</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#tablazat .js-torles").on("click", function () {
+                confirm("Biztosan törölni akarod ezt az ügyfelet?");
+            });
+        });
+    </script>
+}

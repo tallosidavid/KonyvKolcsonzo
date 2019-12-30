@@ -1,0 +1,37 @@
+﻿@model WEB191010.Models.Film
+
+<div class="col-sm-4">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="~/Content/Imgs/@(Model.ImgReference)" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Cim</h5>
+
+                    <p class="card-text">
+                        @for (int i = 0; i < Model.Mufajok.Length; i++)
+                        {
+                            @Html.ActionLink($"{Model.Mufajok[i]}", "Mufajok", new { mufaj = Model.Mufajok[i] })
+                            if (i != Model.Mufajok.Length - 1)
+                            {<text>, </text>}
+                        }
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-sm btn-primary btn-block">Kölcsönzés</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-sm btn-secondary btn-block">Szerkesztés</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
